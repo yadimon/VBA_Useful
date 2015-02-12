@@ -30,4 +30,14 @@
 	send ^v 			;paste
 	Clipboard := ClipSaved   ; Restore the original clipboard.
 	return
+	
+	;remove line
+	^y::
+	send {up}{End}
+	send {Shift Down}
+	send {down}{End}
+	send {Shift Up}
+	send {Del}
+	send {Down}{End}
+	return
 }
