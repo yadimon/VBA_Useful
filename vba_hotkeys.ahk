@@ -23,21 +23,18 @@
 	;double line
 	^d::
 	ClipSaved := ClipboardAll ; save clipborad
-	send {End}+{Home} 	;goto endsend {End}+{Home}
-	send ^c 			;copy
-	send {End} 			;goto end
-	send {Enter} 		;new line
-	send ^v 			;paste
-	Clipboard := ClipSaved   ; Restore the original clipboard.
+	send {End}+{Home}   ;select full line
+	send ^c             ;copy
+	send {End}          ;goto end
+	send {Enter}        ;new line
+	send ^v             ;paste
+	Clipboard := ClipSaved ;Restore the original clipboard.
 	return
 	
 	;remove line
 	^y::
-	send {up}{End}
-	send {Shift Down}
-	send {down}{End}
-	send {Shift Up}
-	send {Del}
-	send {Down}{End}
+	send {End}+{Up}+{End}   ;select full line with newline of predecessor
+	send {Del}              ;remove line
+	send {Down}{Home}{Home} ;move to first position
 	return
 }
